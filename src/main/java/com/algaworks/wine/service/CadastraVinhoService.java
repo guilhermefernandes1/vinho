@@ -15,4 +15,10 @@ public class CadastraVinhoService {
 	public void save(Vinho vinho){
 		this.vinhoRepo.save(vinho);
 	}
+	
+	public void adicionarFoto(Long codigo, String nome) {
+		Vinho vinho = this.vinhoRepo.findOne(codigo);
+		vinho.setFoto(nome);
+		this.vinhoRepo.save(vinho);
+	}
 }
