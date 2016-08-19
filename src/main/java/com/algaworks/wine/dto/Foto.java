@@ -2,18 +2,20 @@ package com.algaworks.wine.dto;
 
 public class Foto {
 
-	private String nome;
+	private String url;
 
-	public Foto(String nome) {		
-		this.nome = nome;
+	public Foto(String url) {		
+		this.setUrl(url);
 	}
 
-	public String getNome() {
-		return nome;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setUrl(String url) {
+		this.url = url;
 	}
+
+
 	
 }
