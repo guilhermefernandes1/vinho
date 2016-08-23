@@ -17,7 +17,7 @@ import com.algaworks.wine.model.TipoVinho;
 import com.algaworks.wine.model.Vinho;
 import com.algaworks.wine.repository.Vinhos;
 import com.algaworks.wine.service.CadastraVinhoService;
-import com.algaworks.wine.storage.FotoStorageS3;
+import com.algaworks.wine.storage.FotoStorage;
 
 
 @Controller
@@ -31,7 +31,7 @@ public class VinhosController {
 	private CadastraVinhoService cadastraVinhoService;
 	
 	@Autowired
-	private FotoStorageS3 fotoStorageS3;
+	private FotoStorage fotoStorage;
 	
 	@RequestMapping
 	public ModelAndView pesquisa() {
@@ -63,7 +63,7 @@ public class VinhosController {
 		ModelAndView mv = new ModelAndView("/vinho/VisualizacaoVinho");
 		
 		if(vinho.temFoto()){
-			vinho.setUrl(this.fotoStorageS3.getUrl(vinho.getFoto()));
+			vinho.setUrl(this.fotoStorage.getUrl(vinho.getFoto()));
 		}
 		mv.addObject("vinho", vinho);
 		return mv;

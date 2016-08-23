@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.algaworks.wine.dto.Foto;
 import com.algaworks.wine.service.CadastraVinhoService;
+import com.algaworks.wine.storage.FotoReader;
 
 @RestController
 @RequestMapping("/fotos")
@@ -17,12 +18,20 @@ public class FotosController {
 	
 	@Autowired
 	private CadastraVinhoService vinhoService;
+	
+	@Autowired(required = false)
+	private FotoReader fotoReader;
 
 	@RequestMapping(value="/{codigo}", method=RequestMethod.POST)
 	public Foto upload(@PathVariable Long codigo,			
 			@RequestParam("files[]") MultipartFile[]  files){
 		String url = this.vinhoService.salvarFoto(codigo, files[0]);
 		return new Foto(url);
+	}
+	
+	@RequestMapping("/{nome:.*}")
+	public byte[] recuperar(@PathVariable String nome){
+		return this.fotoReader.recuperar(nome);
 	}
 	
 }
