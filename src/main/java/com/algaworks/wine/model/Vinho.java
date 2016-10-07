@@ -52,6 +52,9 @@ public class Vinho {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 	public TipoVinho getTipo() {
 		return tipo;
 	}
